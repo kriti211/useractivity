@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>My Simple Webpage</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<h1>User Details</h1>
+<p th:text="'User name = Kaushal Joshi'" />
+<p th:text="'City name = ' + ${userActivity.getCity()}" />
+<p th:text="'Country name = ' + ${userActivity.getCountry()}" />
+<p th:text="'Service Provider = ' + ${userActivity.getIsp()}" />
+<p th:text="'Browser name = ' + ${userActivity.getBrowserName()}" />
+<p th:text="'OS name = ' + ${userActivity.getOsName()}" />
+
+<div class = "container">
+  <div class = "row">
+    <h1>List users</h1>
+  </div>
+  <table class = "table table-striped table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th> User login time</th>
+      <th> User Logout time</th>
+      <th> User Session Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "logList: ${userActivityList}">
+      <td th:text = "${logList.loginTime}"></td>
+      <td th:text = "${logList.logoutTime}"></td>
+      <td th:text = "${logList.sessionTime}" ></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<form method="POST" action="/logout">
+  <button type="submit" class="btn btn-primary">Logout</button>
+</form>
+</body>
+</html>
